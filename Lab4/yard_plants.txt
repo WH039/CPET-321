@@ -1,0 +1,35 @@
+f lavender       20.99 purple  0
+f marigold        3.99 orange  1
+t oak           359.44         1
+t arborvitae     23.99         0
+f iris           14.99 yellow  0
+f peony          28.99 red     0
+t walnut          9.98         1
+f hibiscus       19.68 white   0
+t cedar          79.79         0
+f rose           22.75 red     0
+f hens-n-chicks  27.35 green   0
+t mangnolia     129.34         1
+t maple         379.45         1
+f lily            6.47 pink    0
+f mandarin       14.75 orange  0
+t basswood      169.29         1
+t birch         189.79         1
+t aspen          29.85         1
+f geranium       14.99 pink    1
+t hickory       149.88         1
+t elm           298.79         1
+f zinnias         4.79 purple  1
+t yew            89.50         0
+t cypress       129.89         0
+f dahlias        11.69 purple  1
+f begonia        12.79 pink    1
+f geranium       12.99 red     1
+t spruce         69.70		   0
+t holly         129.93         0
+t juniper        39.29         0
+f marigold        6.99 red     1
+f zinnias         4.79 yelllow 1
+f dahlias        21.79 orange  1
+t yew            89.50         0
+t cypress       129.89         0
