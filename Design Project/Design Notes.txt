@@ -1,0 +1,11 @@
+Title       : Design Project - Carpool Reservation System
+Designers   : Weicheng Huang, James Musonda
+Course      : Computational Problem Solving II
+			  CPET.321.01/L01
+Date        : November 14th, 2024
+
+Description	: Creating a reservation system for a dodgeball team and it's memembers based on their credits.
+
+-Progression Timeline-
+
+11-14-2024 - Started Project 
