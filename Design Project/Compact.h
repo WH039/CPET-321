@@ -18,7 +18,8 @@ namespace COMPACT {
 		int numSeats;
 		string vehicleColor;
 	public:
+		Compact();
 		int getNumSeats();
-		string getVehicleColor();
+		string getVehicleColor(string);
 	};
 }

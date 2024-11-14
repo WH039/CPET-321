@@ -134,7 +134,11 @@
     <ClInclude Include="Reservation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Compact.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pickup.cpp" />
+    <ClCompile Include="Sedan.cpp" />
+    <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design Notes.txt" />

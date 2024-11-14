@@ -19,8 +19,9 @@ namespace SEDAN {
 		string vehicleColor;
 
 	public:
+		Sedan();
 		int getNumSeats();
-		string getVehicleColor();
+		string getVehicleColor(string);
 
 	};
 }

@@ -19,8 +19,8 @@ namespace PICKUP {
 		string vehicleColor;
 
 	public:
+		Pickup();
 		int getNumSeats();
-		string getVehicleColor();
-
+		string getVehicleColor(string);
 	};
 }
