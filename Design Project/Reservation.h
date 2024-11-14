@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -20,14 +21,13 @@ namespace RESERVATION {
 		string firstName;
 		string lastName;
 		int credits;
+		bool isdriver;
 
 	public:
 		void createReservation();
 		void modifyReservation();
 		void deleteReservation();
-		void displayVehicles();
 		void printReservation();
-		void printVehicleAssignments();
 
 	};
 }

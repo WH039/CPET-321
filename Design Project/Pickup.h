@@ -13,7 +13,14 @@
 using namespace VEHICLE;
 
 namespace PICKUP {
-	class Pickup {
+	class Pickup : Vehicle {
+	private:
+		int numSeats;
+		string vehicleColor;
+
+	public:
+		int getNumSeats();
+		string getVehicleColor();
 
 	};
 }

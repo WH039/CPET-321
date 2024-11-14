@@ -24,6 +24,12 @@
     <ClInclude Include="Pickup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Compact.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sedan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,5 +40,9 @@
     <Text Include="Design Notes.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

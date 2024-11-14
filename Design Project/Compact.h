@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-/// File Name   : Vehicle.h																		 ///
+/// File Name   : Compact.h																		 ///
 /// Designers   : Weicheng Huang, James Musonda													 ///
 /// Course      : Computational Problem Solving II												 ///
 ///				  CPET.321.01 / L01                                                              ///
@@ -8,21 +8,17 @@
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
+#include "Vehicle.h"
 
-using namespace std;
+using namespace VEHICLE;
 
-namespace VEHICLE {
-	class Vehicle {
-	protected:
-		string vehicleType;
-		vector<string> seating;
-
+namespace COMPACT {
+	class Compact : Vehicle {
+	private:
+		int numSeats;
+		string vehicleColor;
 	public:
-		void displayVehicles();
-		void printVehicleAssignments();
+		int getNumSeats();
+		string getVehicleColor();
 	};
 }

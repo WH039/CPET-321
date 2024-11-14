@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Compact.h" />
     <ClInclude Include="Pickup.h" />
+    <ClInclude Include="Sedan.h" />
     <ClInclude Include="Vehicle.h" />
     <ClInclude Include="Reservation.h" />
   </ItemGroup>
@@ -136,6 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
