@@ -12,24 +12,40 @@ using namespace COMPACT;
 
 Compact::Compact()
 {
-	numSeats = 4;
+    numSeats = 3;
+    passengerSeatValue = 5;
+}
+
+int Compact::getSeatValue(string seat)
+{
+    int output = 0;
+    if (seat == "passenger") {
+        output = passengerSeatValue;
+    }
+
+    return output;
 }
 
 int Compact::getNumSeats()
 {
-	return numSeats;
+    int numSeats = 4;
+
+    return numSeats;
 }
 
 string Compact::getVehicleColor(string fname)
 {
-	if (fname == "Ben") {
-		vehicleColor = "Red";
-	}
-	else if (fname == "Art") {
-		vehicleColor = "Blue";
-	}
-	else if (fname == "Ann") {
-		vehicleColor = "Yellow";
-	}
-	return vehicleColor;
+    if (fname == "Ben") {
+        vehicleColor = "Red";
+    }
+    else if (fname == "Art") {
+        vehicleColor = "Blue";
+    }
+    else if (fname == "Ann") {
+        vehicleColor = "Yellow";
+    }
+    
+    return vehicleColor;
 }
+
+

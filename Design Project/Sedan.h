@@ -17,9 +17,13 @@ namespace SEDAN {
 	private:
 		int numSeats;
 		string vehicleColor;
+		int passengerSeatValue;
+		int windowSeatValue;
+		int middleSeatValue;
 
 	public:
 		Sedan();
+		int getSeatValue(string);
 		int getNumSeats();
 		string getVehicleColor(string);
 

@@ -18,7 +18,6 @@ using namespace std;
 namespace VEHICLE {
 	class Vehicle {
 	protected:
-		int numSeats;
 		string vehicleType;
 		vector<string> seating;
 

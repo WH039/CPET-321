@@ -17,10 +17,14 @@ namespace PICKUP {
 	private:
 		int numSeats;
 		string vehicleColor;
+		int passengerSeatValue;
+		int windowSeatValue;
 
 	public:
 		Pickup();
+		int getSeatValue(string);
 		int getNumSeats();
 		string getVehicleColor(string);
+
 	};
 }
