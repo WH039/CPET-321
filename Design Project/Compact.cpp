@@ -12,40 +12,42 @@ using namespace COMPACT;
 
 Compact::Compact()
 {
-    numSeats = 3;
-    passengerSeatValue = 5;
+    numSeats_Compact = 3;
+    passengerSeatValue_Compact = 5;
+    windowSeatValue_Compact = 3;
 }
 
-int Compact::getSeatValue(string seat)
+int Compact::getCompactSeatValue(string seat)
 {
     int output = 0;
     if (seat == "passenger") {
-        output = passengerSeatValue;
+        output = passengerSeatValue_Compact;
+    }
+    else if (seat == "window") {
+        output = windowSeatValue_Compact;
     }
 
     return output;
 }
 
-int Compact::getNumSeats()
+int Compact::getCompactNumSeats()
 {
-    int numSeats = 4;
-
-    return numSeats;
+    return numSeats_Compact;
 }
 
-string Compact::getVehicleColor(string fname)
+string Compact::getCompactColor(string fname)
 {
     if (fname == "Ben") {
-        vehicleColor = "Red";
+        vehicleColor_Compact = "Red";
     }
     else if (fname == "Art") {
-        vehicleColor = "Blue";
+        vehicleColor_Compact = "Blue";
     }
     else if (fname == "Ann") {
-        vehicleColor = "Yellow";
+        vehicleColor_Compact = "Yellow";
     }
     
-    return vehicleColor;
+    return vehicleColor_Compact;
 }
 
 

@@ -12,37 +12,35 @@ using namespace PICKUP;
 
 Pickup::Pickup()
 {
-    numSeats = 2;
-    passengerSeatValue = 5;
+    numSeats_Pickup = 1;
+    passengerSeatValue_Pickup = 5;
 }
 
-int Pickup::getSeatValue(string seat)
+int Pickup::getPickupSeatValue(string seat)
 {
     int output = 0;
     if (seat == "passenger") {
-        output = passengerSeatValue;
+        output = passengerSeatValue_Pickup;
     }
     return output;
 }
 
-int Pickup::getNumSeats()
+int Pickup::getPickupNumSeats()
 {
-    int numSeats = 2;
-
-    return numSeats;
+    return numSeats_Pickup;
 }
 
-string Pickup::getVehicleColor(string fname)
+string Pickup::getPickupColor(string fname)
 {
     if (fname == "Pat") {
-        vehicleColor = "Purple";
+        vehicleColor_Pickup = "Purple";
     }
     else if (fname == "Jane") {
-        vehicleColor = "Green";
+        vehicleColor_Pickup = "Green";
     }
     else if (fname == "Tim") {
-        vehicleColor = "Black";
+        vehicleColor_Pickup = "Black";
     }
 
-    return vehicleColor;
+    return vehicleColor_Pickup;
 }

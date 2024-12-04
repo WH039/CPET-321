@@ -12,44 +12,44 @@ using namespace SEDAN;
 
 Sedan::Sedan()
 {
-    numSeats = 4;
-    passengerSeatValue = 5;
-    windowSeatValue = 2;
-    middleSeatValue = 1;
+    numSeats_Sedan = 4;
+    passengerSeatValue_Sedan = 5;
+    windowSeatValue_Sedan = 2;
+    middleSeatValue_Sedan = 1;
 }
 
-int Sedan::getSeatValue(string seat)
+int Sedan::getSedanSeatValue(string seat)
 {
     int output = 0;
     if (seat == "passenger") {
-        output = passengerSeatValue;
+        output = passengerSeatValue_Sedan;
     }
     else if (seat == "window") {
-        output = windowSeatValue;
+        output = windowSeatValue_Sedan;
     }
     else if (seat == "middle") {
-        output = middleSeatValue;
+        output = middleSeatValue_Sedan;
     }
 
     return output;
 }
 
-int Sedan::getNumSeats()
+int Sedan::getSedanNumSeats()
 {
     return numSeats;
 }
 
-string Sedan::getVehicleColor(string fname)
+string Sedan::getSedanColor(string fname)
 {
     if (fname == "Grace") {
-        vehicleColor = "Blue";
+        vehicleColor_Sedan = "Blue";
     }
     else if (fname == "Lary") {
-        vehicleColor = "Black";
+        vehicleColor_Sedan = "Black";
     }
     else if (fname == "Jessie") {
-        vehicleColor = "Green";
+        vehicleColor_Sedan = "Green";
     }
 
-    return vehicleColor;
+    return vehicleColor_Sedan;
 }

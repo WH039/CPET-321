@@ -18,11 +18,21 @@ using namespace std;
 namespace VEHICLE {
 	class Vehicle {
 	protected:
+		int numseats;
+		string driverName;
+		int numPassengers;
+		string frontPassenger;
+		string leftWindowPassenger;
+		string rightWindowPassenger;
+		string middlePassanger;
 		string vehicleType;
-		vector<string> seating;
+		string vehicleColor;
+		int passengerSeatValue;
+		int windowSeatValue;
+		int middleSeatValue;
 
 	public:
-		void displayVehicles();
-		void printVehicleAssignments();
+		void displayVehicle(string, string);
+		string setVehicleColor(string);
 	};
 }

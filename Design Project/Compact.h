@@ -15,14 +15,15 @@ using namespace VEHICLE;
 namespace COMPACT {
 	class Compact : Vehicle {
 	private:
-		int numSeats;
-		string vehicleColor;
-		int passengerSeatValue;
+		int numSeats_Compact;
+		string vehicleColor_Compact;
+		int passengerSeatValue_Compact;
+		int windowSeatValue_Compact;
 
 	public:
 		Compact();
-		int getSeatValue(string);
-		int getNumSeats();
-		string getVehicleColor(string);
+		int getCompactSeatValue(string);
+		int getCompactNumSeats();
+		string getCompactColor(string);
 	};
 }
