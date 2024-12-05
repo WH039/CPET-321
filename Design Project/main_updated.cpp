@@ -43,24 +43,27 @@ int main() {
 
     bool foundPlayer = false;
 
-    string Name;
     cout << "Enter the player's first name: ";
     cin >> Name;
 
     for (int i = 0; i < passList.size(); i++) {
         if (Name == passList[i]) {
             foundPlayer = true;
-            if (creditList[i] == 0) {
-                cout << "No credits available.\n";
-            }
-            else {
-                cout << "Credits: " << creditList[i] << endl;
-            }
-        } //if
-        if (!foundPlayer) {
-            cout << "Player not found.\n";
+            continue;
         }
-    } //for
+    }
+
+    if(!foundPlayer){
+        cout << "Player not found.\n";
+        exit(1);
+    }
+
+    for (int i = 0; i < passList.size(); i++) {
+        if (Name == passList[i]) {
+            cout << "Credits: " << creditList[i] << endl;
+            continue;
+        }
+    }
 
     char CB = '1', LWB = '2';
     char RWB = '2', RF = '5';
@@ -69,8 +72,13 @@ int main() {
     vector<char> compactSeats = { '-', RF, LB, RB };
     vector<char> truckSeats = { '-', RF };
 
+    vector<string> sedanSpot = { "-", "RF", "LB", "CB", "RB"};
+    vector<string> compactSpot = { "-", "RF", "LB", "RB" };
+    vector<string> truckSpot = { "-", "RF" };
+
     bool proceed = false;
     string seatType;
+    char location = ' ';
 
     while (!proceed) {
         cout << "1. Compact\n";
@@ -87,10 +95,72 @@ int main() {
                 if (t == 1) { cout << endl; }
             }
 
-            cout << "Select your seat: ";
+            cout << "\n\nSelect your seat. Case sensitive. ";
+            cout << "Seat: ";
             cin >> seatType;
+            for (int t = 0; t < compactSpot.size(); t++){
+                if (seatType == compactSpot[t]) {
+                    location = compactSeats[t];
+                    continue;
+                }
+            } //for
+            for (int t = 0; t < creditList.size(); t++) {
+                if (creditList[t] >= location - '0') {
+                    cout << "Reserved spot for seat " << location << ".\n";
+                    continue;
+                }
+                else {
+                    cout << "Not enough credits.\n";
+                }
+            } //for
+            
+            for (int t = 0; t < compactSeats.size(); t++) {
+                if (location == compactSeats[t]) {
+                    compactSpot[t] = 'X';
+                    continue;
+                }
+            } //for
+
+            cout << "\nCompact assignments:\n";
+            for (int t = 0; t < compactSeats.size(); t++) {
+                cout << "(" << compactSeats[t] << ")";
+                if (t == 1) { cout << endl; }
+            }
             break;
         case 2:
+            cout << "\nSedan assignments:\n";
+            for (int t = 0; t < sedanSeats.size(); t++) {
+                cout << "(" << sedanSeats[t] << ")";
+                if (t == 0) { cout << "   "; }
+                if (t == 1) { cout << endl; }
+            }
+
+            cout << "\n\nSelect your seat. Case sensitive. ";
+            cout << "Seat: ";
+            cin >> seatType;
+            for (int t = 0; t < sedanSpot.size(); t++) {
+                if (seatType == sedanSpot[t]) {
+                    location = sedanSeats[t];
+                    continue;
+                }
+            } //for
+            for (int t = 0; t < creditList.size(); t++) {
+                if (creditList[t] >= location - '0') {
+                    cout << "Reserved spot for seat " << location << ".\n";
+                    continue;
+                }
+                else {
+                    cout << "Not enough credits.\n";
+                }
+            } //for
+
+            for (int t = 0; t < sedanSeats.size(); t++) {
+                if (location == sedanSeats[t]) {
+                    sedanSpot[t] = 'X';
+                    continue;
+                }
+            } //for
+
             cout << "\nSedan assignments:\n";
             for (int t = 0; t < sedanSeats.size(); t++) {
                 cout << "(" << sedanSeats[t] << ")";
@@ -105,16 +175,44 @@ int main() {
                 if (t == 1) { cout << endl; }
             }
 
+            cout << "\n\nSelect your seat. Case sensitive. ";
+            cout << "Seat: ";
+            cin >> seatType;
+            for (int t = 0; t < truckSpot.size(); t++) {
+                if (seatType == truckSpot[t]) {
+                    location = truckSeats[t];
+                    continue;
+                }
+            } //for
+            for (int t = 0; t < creditList.size(); t++) {
+                if (creditList[t] >= location - '0') {
+                    cout << "Reserved spot for seat " << location << ".\n";
+                    
+                    continue;
+                }
+                else {
+                    cout << "Not enough credits.\n";
+                }
+            } //for
+
+            for (int t = 0; t < truckSeats.size(); t++) {
+                if (location == truckSeats[t]) {
+                    truckSpot[t] = 'X';
+                    continue;
+                }
+            } //for
+
+            cout << "\nTruck assignments:\n";
+            for (int t = 0; t < truckSeats.size(); t++) {
+                cout << "(" << truckSeats[t] << ")";
+                if (t == 1) { cout << endl; }
+            }
             break;
         default:
             proceed = false;
             intFailSafe();
         } //switch
     } // while
-
-    // char c = '4';
-    // int value = 4;
-    // c - '0' == value    
 
     return 0;
 }
