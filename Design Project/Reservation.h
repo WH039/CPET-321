@@ -21,13 +21,18 @@ namespace RESERVATION {
 		string firstName;
 		string lastName;
 		int credits;
-		bool isdriver;
+		bool isDriver;
+		int PIN = 000;
 
 	public:
-		void createReservation();
-		void modifyReservation();
-		void deleteReservation();
-		void printReservation();
+		void setFirstName(string);
+		void setLastName(string);
+		void setCredits(int);
+		void setPIN(int);
+		string getFirstname();
+		string getLastname();
+		int getCredits();
+		int getPIN();
 
 	};
 }

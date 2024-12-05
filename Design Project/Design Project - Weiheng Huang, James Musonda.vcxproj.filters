@@ -44,9 +44,18 @@
     <ClCompile Include="Sedan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Reservation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design Notes.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="dodgeball_team.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="vehicle_assignments.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

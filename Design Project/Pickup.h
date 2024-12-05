@@ -15,16 +15,21 @@ using namespace VEHICLE;
 namespace PICKUP {
 	class Pickup : Vehicle {
 	private:
-		int numSeats_Pickup;
-		string vehicleColor_Pickup;
-		int passengerSeatValue_Pickup;
-		
+		string driver;
+		string color;
+		vector<char> seats;
+		vector<string> passengers;
 
 	public:
 		Pickup();
-		int getPickupSeatValue(string);
-		int getPickupNumSeats();
-		string getPickupColor(string);
-
+		
+		void assignVehicle(string);
+		char getSeatValue(int);
+		string getColor(string);
+		int findSeat(int, int);
+		void addPassenger(string, string);
+		void removePassenger(const string, const string, int);
+		string getPassenger(int);
+		int passengerListSize();
 	};
 }

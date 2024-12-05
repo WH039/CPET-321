@@ -137,10 +137,13 @@
     <ClCompile Include="Compact.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pickup.cpp" />
+    <ClCompile Include="Reservation.cpp" />
     <ClCompile Include="Sedan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design Notes.txt" />
+    <Text Include="dodgeball_team.txt" />
+    <Text Include="vehicle_assignments.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

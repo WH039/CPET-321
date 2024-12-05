@@ -15,17 +15,22 @@ using namespace VEHICLE;
 namespace SEDAN {
 	class Sedan : Vehicle {
 	private:
-		int numSeats_Sedan;
-		string vehicleColor_Sedan;
-		int passengerSeatValue_Sedan;
-		int windowSeatValue_Sedan;
-		int middleSeatValue_Sedan;
+		string driver;
+		string color;
+		vector<char> seats;
+		vector<string> passengers;
 
 	public:
 		Sedan();
-		int getSedanSeatValue(string);
-		int getSedanNumSeats();
-		string getSedanColor(string);
+
+		void assignVehicle(string);
+		char getSeatValue(int);
+		string getColor(string);
+		int findSeat(int, int);
+		void addPassenger(string, string);
+		void removePassenger(const string, const string, int);
+		string getPassenger(int);
+		int passengerListSize();
 
 	};
 }

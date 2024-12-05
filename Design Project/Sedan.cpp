@@ -12,44 +12,158 @@ using namespace SEDAN;
 
 Sedan::Sedan()
 {
-    numSeats_Sedan = 4;
-    passengerSeatValue_Sedan = 5;
-    windowSeatValue_Sedan = 2;
-    middleSeatValue_Sedan = 1;
 }
 
-int Sedan::getSedanSeatValue(string seat)
+void Sedan::assignVehicle(string driver)
 {
-    int output = 0;
-    if (seat == "passenger") {
-        output = passengerSeatValue_Sedan;
+    if (driver == "Ben") {
+        color = "Red";
     }
-    else if (seat == "window") {
-        output = windowSeatValue_Sedan;
+    else if (driver == "Art") {
+        color = "Blue";
     }
-    else if (seat == "middle") {
-        output = middleSeatValue_Sedan;
+    else if (driver == "Ann") {
+        color = "Yellow";
     }
-
-    return output;
+    seats = { '-', '5', '2', '1', '2' };
 }
 
-int Sedan::getSedanNumSeats()
+char Sedan::getSeatValue(int num)
 {
-    return numSeats;
+    char seatValue = seats[num];
+
+    return seatValue;
 }
 
-string Sedan::getSedanColor(string fname)
+string Sedan::getColor(string fname)
 {
-    if (fname == "Grace") {
-        vehicleColor_Sedan = "Blue";
+    return color;
+}
+
+int Sedan::findSeat(int credits, int num)
+{
+    int pin = 000;
+    if (num == 1) {
+        if (seats[num] != 'X') {
+            if (credits == 5) {
+                if (color == "Purple") {
+                    pin = 701;
+                }
+                else if (color == "Green") {
+                    pin = 801;
+                }
+                else if (color == "Black") {
+                    pin = 901;
+                }
+                seats[num] = 'X';
+            }
+            else if (credits < 5) {
+                cout << "This person does not have enough credits for this seat" << endl;
+            }
+        }
     }
-    else if (fname == "Lary") {
-        vehicleColor_Sedan = "Black";
+    if (num == 2) {
+        if (seats[num] != 'X') {
+            if (credits == 2) {
+                if (color == "Purple") {
+                    pin = 702;
+                }
+                else if (color == "Green") {
+                    pin = 802;
+                }
+                else if (color == "Black") {
+                    pin = 902;
+                }
+                seats[num] = 'X';
+            }
+            else if (credits < 2) {
+                cout << "This person does not have enough credits for this seat" << endl;
+            }
+        }
+        if (seats[num + 2] != 'X') {
+            if (credits == 2) {
+                if (color == "Purple") {
+                    pin = 704;
+                }
+                else if (color == "Green") {
+                    pin = 804;
+                }
+                else if (color == "Black") {
+                    pin = 904;
+                }
+                seats[num] = 'X';
+            }
+            else if (credits < 2) {
+                cout << "This person does not have enough credits for this seat" << endl;
+            }
+        }
     }
-    else if (fname == "Jessie") {
-        vehicleColor_Sedan = "Green";
+    if (num == 3) {
+        if (seats[num] != 'X') {
+            if (credits == 1) {
+                if (color == "Purple") {
+                    pin = 703;
+                }
+                else if (color == "Green") {
+                    pin = 803;
+                }
+                else if (color == "Black") {
+                    pin = 903;
+                }
+                seats[num] = 'X';
+            }
+            else if (credits < 1) {
+                cout << "This person does not have enough credits for this seat" << endl;
+            }
+        }
     }
 
-    return vehicleColor_Sedan;
+    return pin;
+}
+
+void Sedan::addPassenger(string fname, string lname)
+{
+    string name = fname;
+    name.append(" ");
+    name.append(lname);
+    passengers.push_back(name);
+}
+
+void Sedan::removePassenger(const string fname, const string lname, int pin)
+{
+    string name = fname;
+    name.append(" ");
+    name.append(lname);
+    for (int i = 0; i < passengers.size(); i++) {
+        if (passengers[i] == name) {
+            passengers.erase(passengers.begin() + (i - 1));
+            break;
+        }
+    }
+    if (pin == 701 || pin == 801 || pin == 901) {
+        seats[1] = '5';
+    }
+    else if (pin == 702 || pin == 802 || pin == 902) {
+        seats[2] = '2';
+    }
+    else if (pin == 703 || pin == 803 || pin == 903) {
+        seats[3] = '1';
+    }
+    else if (pin == 704 || pin == 804 || pin == 904) {
+        seats[4] = '3';
+    }
+}
+
+string Sedan::getPassenger(int n)
+{
+    return passengers[n];
+}
+
+int Sedan::passengerListSize()
+{
+    int size;
+
+    size = passengers.size();
+
+    return size;
 }
