@@ -6,58 +6,95 @@
 /// Notes       :																				 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <iostream>
-#include <fstream>
-
 #include "Vehicle.h"
-#include "Pickup.h"
 #include "Compact.h"
 #include "Sedan.h"
+#include "Pickup.h"
 #include "Reservation.h"
 
 using namespace std;
-using namespace VEHICLE;
-using namespace PICKUP;
-using namespace COMPACT;
-using namespace SEDAN;
-using namespace RESERVATION;
 
-ifstream OpenInputFile()
-{
-	string inFileName = "dodgeball_team.txt";
-	ifstream temp;
+void displayMenu() {
+	cout << "Welcome to the Carpool Reservation System" << endl;
+	cout << "Please Select an Option:" << endl;
+	cout << "________________________" << endl;
+	cout << "[1] Create a Reservation" << endl;
+	cout << "[2] Modify a Reservation" << endl;
+	cout << "[3] Delete a Reservation" << endl;
+	cout << "[4] Display all Vehicles" << endl;
+	cout << "[5] Print All Reservations" << endl;
+	cout << "[6] Print Vehicle Assignments" << endl;
+	cout << "[0] Exit" << endl;
+}
 
-	temp.open(inFileName.c_str());
-
-	if (!temp.is_open()) {
-		cout << "\nUnsuccessfully... Program Terminated\n" << endl;
-		exit(1);
-	}
-	return (temp);
+void displayPickups(int seatNum, string color,string carType, Pickup carColor) {
+	for (int t = 0; t < seatNum; ++t) {
+		if (t == 0) {
+			cout << color << endl;
+		}
+		cout << "(" << carColor.getSeatValue(t) << ")";
+	} //for
+	cout << endl << endl;
+}
+void displayCompacts(int seatNum, string color, string carType, Compact carColor) {
+	for (int t = 0; t < seatNum; ++t) {
+		if (t == 0) {
+			cout << color << endl;
+		}
+		if (t == 2) { cout << endl; }
+		cout << "(" << carColor.getSeatValue(t) << ")";
+	} //for
+	cout << endl << endl;
+}
+void displaySedans(int seatNum, string color, string carType, Sedan carColor) {
+	for (int t = 0; t < seatNum; ++t) {
+		if (t == 0) {
+			cout << color << endl;
+		}
+		if (t == 1) { cout << "   "; }
+		if (t == 2) { cout << endl; }
+		cout << "(" << carColor.getSeatValue(t) << ")";
+	} //for
+	cout << endl << endl;
 }
 
 int main() {
 	
-	ifstream inFile;
-	inFile = OpenInputFile();
-
+	ifstream File("dodgeball_team.txt");
+	if (!File.is_open()) { 
+		cout << "File not found.\n";
+		exit(4);
+	}
 	vector<Reservation> Person;
+	vector<string> driverList;
 	Reservation tempPerson;
-	string fname;
-	string lname;
-	int credits;
+	string firstName;
+	string lastName;
+	int credits = 0;
+	int t = 0;
 
-	while (inFile.good()) {
-		inFile >> fname >> lname >> credits;
-		tempPerson.setFirstName(fname);
-		tempPerson.setLastName(lname);
+	while (File.good()) {
+		if (t < 9) {
+			File >> firstName >> lastName;
+			driverList.push_back(firstName);
+		} 
+		else {
+			File >> firstName >> lastName >> credits;
+		}
+		tempPerson.setFirstName(firstName);
+		tempPerson.setLastName(lastName);
 		tempPerson.setCredits(credits);
 		Person.push_back(tempPerson);
+		t++;
 	}
 
+	/*
 	for (int i = 0; i < Person.size(); i++) {
 		cout << Person[i].getFirstname() << " " << Person[i].getLastname() << " " << Person[i].getCredits() << endl;
 	}
+	*/
+
+	Pickup line;
 
 	Pickup purplePickup;
 	purplePickup.assignVehicle(Person[0].getFirstname());
@@ -66,36 +103,49 @@ int main() {
 	Pickup blackPickup;
 	blackPickup.assignVehicle(Person[2].getFirstname());
 
-	Pickup redCompact;
+	Compact redCompact;
 	redCompact.assignVehicle(Person[3].getFirstname());
-	Pickup blueCompact;
+	Compact blueCompact;
 	blueCompact.assignVehicle(Person[4].getFirstname());
-	Pickup yellowCompact;
+	Compact yellowCompact;
 	yellowCompact.assignVehicle(Person[5].getFirstname());
 
-	Pickup blueSedan;
+	Sedan blueSedan;
 	blueSedan.assignVehicle(Person[6].getFirstname());
-	Pickup blackSedan;
+	Sedan blackSedan;
 	blackSedan.assignVehicle(Person[7].getFirstname());
-	Pickup greenSedan;
+	Sedan greenSedan;
 	greenSedan.assignVehicle(Person[8].getFirstname());
 
+	/*
+	Compact redCompact, blueCompact, yellowCompact;
+	Sedan blueSedan, blackSedan, greenSedan;
+	Pickup purplePickup, greenPickup, blackPickup;
 
+	vector<Compact> compactCars = { redCompact, blueCompact, yellowCompact };
+	vector<Sedan> sedanCars = { blueSedan, blackSedan, greenSedan };
+	vector<Pickup> pickupCars = { purplePickup, greenPickup, blackPickup };
+	
+	for (int t = 0; t < 9; t++) {
+		if (t < 3) {
+			pickupCars[t].assignVehicle(Person[t].getFirstname());
+		}
+		if (t >= 3 && t < 6) {
+			compactCars[t-3].assignVehicle(Person[t-3].getFirstname());
+		}
+		if (t >= 6) {
+			sedanCars[t-6].assignVehicle(Person[t-6].getFirstname());
+		}
+	}
+	*/
+
+	
 
 	int choice = -1;
 
 	while (choice != 0) {
-		system("cls");
-		cout << "Welcome to the Carpool Reservation System" << endl;
-		cout << "Please Select an Option:" << endl;
-		cout << "________________________" << endl;
-		cout << "[1] Create a Reservation" << endl;
-		cout << "[2] Modify a Reservation" << endl;
-		cout << "[3] Delete a Reservation" << endl;
-		cout << "[4] Display all Vehicles" << endl;
-		cout << "[5] Print All Reservations" << endl;
-		cout << "[6] Print Vehicle Assignments" << endl;
-		cout << "[0] Exit" << endl;
+		displayMenu();
+
 		cin >> choice;
 
 		while (choice != 0) {
@@ -105,6 +155,7 @@ int main() {
 				bool found = false;
 				int index;
 				string seatSelection;
+				string carSelect;
 				cout << "Please Enter the Passenger's Name: ";
 				cin >> name;
 				for (int i = 0; i < Person.size(); i++) {
@@ -124,28 +175,40 @@ int main() {
 					break;
 				}
 				else {
-					cout << "\nThis passenger has " << Person[index].getCredits() << endl;
-					system("pause");
+					cout << "\nCredits: " << Person[index].getCredits() << endl;
+					cout << "Select your display (Pickup/Compact/Sedan): ";
+					cin >> carSelect;
+
 					system("cls");
-					cout << "-Pickup-  -Front-" << endl;
-					cout << "Purple :  (" << purplePickup.getSeatValue(0) << ") (" << purplePickup.getSeatValue(1) << ")" << endl;
-					cout << "Green  :  (" << greenPickup.getSeatValue(0) << ") (" << greenPickup.getSeatValue(1) << ")" << endl;
-					cout << "Black  :  (" << blackPickup.getSeatValue(0) << ") (" << blackPickup.getSeatValue(1) << ")" << endl;
-					cout << endl;
-					cout << "-Compact- -Front- -Rear--" << endl;
-					cout << "Red    :  (" << redCompact.getSeatValue(0) << ") (" << redCompact.getSeatValue(1) << ") (" << redCompact.getSeatValue(2) << ") (" << redCompact.getSeatValue(3) << ")" << endl;
-					cout << "Blue   :  (" << blueCompact.getSeatValue(0) << ") (" << blueCompact.getSeatValue(1) << ") (" << blueCompact.getSeatValue(2) << ") (" << blueCompact.getSeatValue(3) << ")" << endl;
-					cout << "Yellow :  (" << yellowCompact.getSeatValue(0) << ") (" << yellowCompact.getSeatValue(1) << ") (" << yellowCompact.getSeatValue(2) << ") (" << yellowCompact.getSeatValue(3) << ")" << endl;
-					cout << endl;
-					cout << "-Sedan-   -Front- ----Rear---" << endl;
-					cout << "Blue   :  (" << blueSedan.getSeatValue(0) << ") (" << blueSedan.getSeatValue(1) << ") (" << blueSedan.getSeatValue(2) << ") (" << blueSedan.getSeatValue(3) << ") (" << blueSedan.getSeatValue(3) << ")" << endl;
-					cout << "Black  :  (" << blackSedan.getSeatValue(0) << ") (" << blackSedan.getSeatValue(1) << ") (" << blackSedan.getSeatValue(2) << ") (" << blackSedan.getSeatValue(3) << ") (" << blackSedan.getSeatValue(3) << ")" << endl;
-					cout << "Green  :  (" << greenSedan.getSeatValue(0) << ") (" << greenSedan.getSeatValue(1) << ") (" << greenSedan.getSeatValue(2) << ") (" << greenSedan.getSeatValue(3) << ") (" << greenSedan.getSeatValue(3) << ")" << endl;
+
+					if (carSelect == "Pickup") {
+						cout << "Pickups\n--------\n\n";
+						displayPickups(2, "Purple", "Pickup", purplePickup);
+						displayPickups(2, "Green", "Pickup", greenPickup);
+						displayPickups(2, "Black", "Pickup", blackPickup);
+					}
+					else if (carSelect == "Compact") {
+						cout << "Compact\n--------\n\n";
+						displayCompacts(4, "Red", "Compact", redCompact);
+						displayCompacts(4, "Blue", "Compact", blueCompact);
+						displayCompacts(4, "Yellow", "Compact", yellowCompact);
+					}
+					else if (carSelect == "Sedan") {
+						cout << "Sedan\n--------\n\n";
+						displaySedans(5, "Blue", "Sedan", blueSedan);
+						displaySedans(5, "Black", "Sedan", blackSedan);
+						displaySedans(5, "Green", "Sedan", greenSedan);
+					}
+					else {
+						cout << "Invalid input.\n";
+					}
+					cout << endl << endl;
 					
-					cout << "\nPlease select a seat: ";
+					cout << "Options: [front] [window] [middle]";
+					cout << "\nSelect your seat: ";
 					cin >> seatSelection;
 					bool found = false;
-					if (seatSelection == "front-seat") {
+					if (seatSelection == "front") {
 						Person[index].setPIN(purplePickup.findSeat(Person[index].getCredits(), 1));
 						purplePickup.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
 						if (Person[index].getPIN() != 000) {
@@ -192,7 +255,7 @@ int main() {
 							break;
 						}
 					}
-					if (seatSelection == "Back-Window") {
+					if (seatSelection == "window") {
 						Person[index].setPIN(redCompact.findSeat(Person[index].getCredits(), 2));
 						redCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
 						if (Person[index].getPIN() != 000) {
@@ -224,7 +287,7 @@ int main() {
 							break;
 						}
 					}
-					if (seatSelection == "Middle-Seat") {
+					if (seatSelection == "middle") {
 						Person[index].setPIN(blueSedan.findSeat(Person[index].getCredits(), 3));
 						blueSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
 						if (Person[index].getPIN() != 000) {
@@ -243,7 +306,7 @@ int main() {
 					}
 
 				}
-				cout << "Reservation Created" << endl;
+				cout << "Reservation Created." << endl;
 				system("pause");
 				break;
 			}
@@ -301,7 +364,7 @@ int main() {
 					}
 				}
 				if (found == false) {
-					cout << "Error: This person does not exist on the dodgeball team" << endl;
+					cout << "Player not found." << endl;
 					system("pause");
 					break;
 				}
@@ -388,7 +451,7 @@ int main() {
 					}
 				}
 				if (foundReserve == false) {
-					cout << "Error: There is no reservation under that PIN number" << endl;
+					cout << "No reservation under that PIN number." << endl;
 					system("pause");
 					break;
 				}
@@ -396,20 +459,19 @@ int main() {
 			}
 			else if (choice == 4) {
 				system("cls");
-				cout << "-Pickup-  -Front-" << endl;
-				cout << "Purple :  (" << purplePickup.getSeatValue(0) << ") (" << purplePickup.getSeatValue(1) << ")" << endl;
-				cout << "Green  :  (" << greenPickup.getSeatValue(0) << ") (" << greenPickup.getSeatValue(1) << ")" << endl;
-				cout << "Black  :  (" << blackPickup.getSeatValue(0) << ") (" << blackPickup.getSeatValue(1) << ")" << endl;
-				cout << endl;
-				cout << "-Compact- -Front- -Rear--" << endl;
-				cout << "Red    :  (" << redCompact.getSeatValue(0) << ") (" << redCompact.getSeatValue(1) << ") (" << redCompact.getSeatValue(2) << ") (" << redCompact.getSeatValue(3) << ")" << endl;
-				cout << "Blue   :  (" << blueCompact.getSeatValue(0) << ") (" << blueCompact.getSeatValue(1) << ") (" << blueCompact.getSeatValue(2) << ") (" << blueCompact.getSeatValue(3) << ")" << endl;
-				cout << "Yellow :  (" << yellowCompact.getSeatValue(0) << ") (" << yellowCompact.getSeatValue(1) << ") (" << yellowCompact.getSeatValue(2) << ") (" << yellowCompact.getSeatValue(3) << ")" << endl;
-				cout << endl;
-				cout << "-Sedan-   -Front- ----Rear---" << endl;
-				cout << "Blue   :  (" << blueSedan.getSeatValue(0) << ") (" << blueSedan.getSeatValue(1) << ") (" << blueSedan.getSeatValue(2) << ") (" << blueSedan.getSeatValue(3) << ") (" << blueSedan.getSeatValue(3) << ")" << endl;
-				cout << "Black  :  (" << blackSedan.getSeatValue(0) << ") (" << blackSedan.getSeatValue(1) << ") (" << blackSedan.getSeatValue(2) << ") (" << blackSedan.getSeatValue(3) << ") (" << blackSedan.getSeatValue(3) << ")" << endl;
-				cout << "Green  :  (" << greenSedan.getSeatValue(0) << ") (" << greenSedan.getSeatValue(1) << ") (" << greenSedan.getSeatValue(2) << ") (" << greenSedan.getSeatValue(3) << ") (" << greenSedan.getSeatValue(3) << ")" << endl;
+				cout << "Pickup\n--------\n\n";
+				displayPickups(2, "Purple", "Pickup", purplePickup);
+				displayPickups(2, "Green", "Pickup", greenPickup);
+				displayPickups(2, "Black", "Pickup", blackPickup);
+				cout << "Compact\n--------\n\n";
+				displayCompacts(4, "Red", "Compact", redCompact);
+				displayCompacts(4, "Blue", "Compact", blueCompact);
+				displayCompacts(4, "Yellow", "Compact", yellowCompact);
+				cout << "Sedan\n--------\n\n";
+				displaySedans(5, "Blue", "Sedan", blueSedan);
+				displaySedans(5, "Black", "Sedan", blackSedan);
+				displaySedans(5, "Green", "Sedan", greenSedan);
+				cout << endl << endl;
 				system("pause");
 				break;
 			}
@@ -536,25 +598,9 @@ int main() {
 				outFile.close();
 				system("pause");
 				break;
-			}
-		}
-	}
-	inFile.close();
+			} //if
+		} //while 2
+		system("cls");
+	} //while 1
+	File.close();
 }
-
-/*
-	cout << "-Pickup-  -Front-" << endl;
-	cout << "Purple :  (" << purplePickupSeats[0] << ") (" << purplePickupSeats[1] << ")" << endl;
-	cout << "Green  :  (" << greenPickupSeats[0] << ") (" << greenPickupSeats[1] << ")" << endl;
-	cout << "Black  :  (" << blackPickupSeats[0] << ") (" << blackPickupSeats[1] << ")" << endl;
-	cout << endl;
-	cout << "-Compact- -Front- -Rear--" << endl;
-	cout << "Red    :  (" << redCompact[0] << ") (" << redCompact[1] << ") (" << redCompact[2] << ") (" << redCompact[3] << ")" << endl;
-	cout << "Blue   :  (" << blueCompact[0] << ") (" << blueCompact[1] << ") (" << blueCompact[2] << ") (" << blueCompact[3] << ")" << endl;
-	cout << "Yellow :  (" << yellowCompact[0] << ") (" << yellowCompact[1] << ") (" << yellowCompact[2] << ") (" << yellowCompact[3] << ")" << endl;
-	cout << endl;
-	cout << "-Sedan-   -Front- ----Rear---" << endl;
-	cout << "Blue   :  (" << blueSedan[0] << ") (" << blueSedan[1] << ") (" << blueSedan[2] << ") (" << blueSedan[3] << ") (" << blueSedan[4] << ")" << endl;
-	cout << "Black  :  (" << blackSedan[0] << ") (" << blackSedan[1] << ") (" << blackSedan[2] << ") (" << blackSedan[3] << ") (" << blackSedan[4] << ")" << endl;
-	cout << "Green  :  (" << greenSedan[0] << ") (" << greenSedan[1] << ") (" << greenSedan[2] << ") (" << greenSedan[3] << ") (" << greenSedan[4] << ")" << endl;
-*/
