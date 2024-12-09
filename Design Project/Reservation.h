@@ -20,16 +20,16 @@ class Reservation {
 		string firstName;
 		string lastName;
 		int credits = 0;
-		int PIN = 0;
+		string PIN = "000";
 
 	public:
 		Reservation();
 		void setFirstName(string);
 		void setLastName(string);
 		void setCredits(int);
-		void setPIN(int);
+		void setPIN(string);
 		string getFirstname();
 		string getLastname();
 		int getCredits();
-		int getPIN();
+		string getPIN();
 	};

@@ -18,7 +18,7 @@ void Reservation::setLastName(string last){	lastName = last;}
 
 void Reservation::setCredits(int coins) { credits = coins; }
 
-void Reservation::setPIN(int pinNum) { PIN = pinNum; }
+void Reservation::setPIN(string pinNum) { PIN = pinNum; }
 
 string Reservation::getFirstname() { return firstName; }
 
@@ -26,4 +26,4 @@ string Reservation::getLastname() {	return lastName;}
 
 int Reservation::getCredits(){ return credits; }
 
-int Reservation::getPIN(){ return PIN; }
+string Reservation::getPIN(){ return PIN; }

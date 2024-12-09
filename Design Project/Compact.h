@@ -13,22 +13,22 @@
 using namespace std;
 
 class Compact : Vehicle {
-private:
-	string driver;
-	string color;
-	vector<char> seats;
-	vector<string> passengers;
+	private:
+		string driver;
+		string color;
+		vector<char> seats;
+		vector<string> passengers;
 
-public:
-	Compact();
-	int findSeat(int, int);
-	int passengerListSize();
-	void assignVehicle(string);
-	void addPassenger(string, string);
-	void removePassenger(const string, const string, int);
-	char getSeatValue(int);
-	string getColor(string);
-	string getPassenger(int);
+	public:
+		Compact();
+		string findSeat(int, int);
+		int passengerListSize();
+		void assignVehicle(string);
+		void addPassenger(string, string);
+		void removePassenger(string, string, string);
+		char getSeatValue(int);
+		string getColor();
+		string getPassenger(int);
 };
 
 

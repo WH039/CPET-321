@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void displayMenu() {
+static void displayMenu() {
 	cout << "Welcome to the Carpool Reservation System" << endl;
 	cout << "Please Select an Option:" << endl;
 	cout << "________________________" << endl;
@@ -94,28 +94,35 @@ int main() {
 	}
 	*/
 
-	Pickup line;
-
 	Pickup purplePickup;
 	purplePickup.assignVehicle(Person[0].getFirstname());
+	//cout << purplePickup.getColor();
 	Pickup greenPickup;
 	greenPickup.assignVehicle(Person[1].getFirstname());
+	//cout << greenPickup.getColor();
 	Pickup blackPickup;
 	blackPickup.assignVehicle(Person[2].getFirstname());
+	//cout << blackPickup.getColor();
 
 	Compact redCompact;
 	redCompact.assignVehicle(Person[3].getFirstname());
+	//cout << redCompact.getColor();
 	Compact blueCompact;
 	blueCompact.assignVehicle(Person[4].getFirstname());
+	//cout << blueCompact.getColor();
 	Compact yellowCompact;
 	yellowCompact.assignVehicle(Person[5].getFirstname());
+	//cout << yellowCompact.getColor();
 
 	Sedan blueSedan;
 	blueSedan.assignVehicle(Person[6].getFirstname());
+	//cout << blueSedan.getColor();
 	Sedan blackSedan;
 	blackSedan.assignVehicle(Person[7].getFirstname());
+	//cout << blackSedan.getColor();
 	Sedan greenSedan;
 	greenSedan.assignVehicle(Person[8].getFirstname());
+	//cout << greenSedan.getColor();
 
 	/*
 	Compact redCompact, blueCompact, yellowCompact;
@@ -207,113 +214,129 @@ int main() {
 					cout << "Options: [front] [window] [middle]";
 					cout << "\nSelect your seat: ";
 					cin >> seatSelection;
-					bool found = false;
-					if (seatSelection == "front") {
+
+					//Front seat
+					if (seatSelection == "front" && carSelect == "Pickup") {
 						Person[index].setPIN(purplePickup.findSeat(Person[index].getCredits(), 1));
 						purplePickup.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
+						if (Person[index].getPIN() == "000") {
+							Person[index].setPIN(greenPickup.findSeat(Person[index].getCredits(), 1));
+							greenPickup.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+							if (Person[index].getPIN() == "000") {
+								Person[index].setPIN(blackPickup.findSeat(Person[index].getCredits(), 1));
+								blackPickup.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+								if (Person[index].getPIN() == "000") {
+									cout << "No front seat available please choose a different vehicle" << endl;
+									system("pause");
+									break;
+								}
+							}
 						}
-						Person[index].setPIN(greenPickup.findSeat(Person[index].getCredits(), 1));
-						greenPickup.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(blackPickup.findSeat(Person[index].getCredits(), 1));
-						blackPickup.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
+					}
+
+					if (seatSelection == "front" && carSelect == "Compact") {
 						Person[index].setPIN(redCompact.findSeat(Person[index].getCredits(), 1));
 						redCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
+						if (Person[index].getPIN() == "000") {
+							Person[index].setPIN(blueCompact.findSeat(Person[index].getCredits(), 1));
+							blueCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+							if (Person[index].getPIN() == "000") {
+								Person[index].setPIN(yellowCompact.findSeat(Person[index].getCredits(), 1));
+								yellowCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+								if (Person[index].getPIN() == "000") {
+									cout << "No front seat available please choose a different vehicle" << endl;
+									system("pause");
+									break;
+								}
+							}
 						}
-						Person[index].setPIN(blueCompact.findSeat(Person[index].getCredits(), 1));
-						blueCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(yellowCompact.findSeat(Person[index].getCredits(), 1));
-						yellowCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
+					}
+
+					if (seatSelection == "front" && carSelect == "Sedan") {
 						Person[index].setPIN(blueSedan.findSeat(Person[index].getCredits(), 1));
 						blueSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(blackSedan.findSeat(Person[index].getCredits(), 1));
-						blackSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(greenSedan.findSeat(Person[index].getCredits(), 1));
-						greenSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
+						if (Person[index].getPIN() == "000") {
+							Person[index].setPIN(blackSedan.findSeat(Person[index].getCredits(), 1));
+							blackSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+							if (Person[index].getPIN() == "000") {
+								Person[index].setPIN(greenSedan.findSeat(Person[index].getCredits(), 1));
+								greenSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+								if (Person[index].getPIN() == "000") {
+									cout << "No front seat available please choose a different vehicle" << endl;
+									system("pause");
+									break;
+								}
+							}
 						}
 					}
-					if (seatSelection == "window") {
-						Person[index].setPIN(redCompact.findSeat(Person[index].getCredits(), 2));
+
+					//Window seat
+					if (seatSelection == "window" && carSelect == "Compact") {
+						Person[index].setPIN(redCompact.findSeat(Person[index].getCredits(), 1));
 						redCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
+						if (Person[index].getPIN() == "000") {
+							Person[index].setPIN(blueCompact.findSeat(Person[index].getCredits(), 1));
+							blueCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+							if (Person[index].getPIN() == "000") {
+								Person[index].setPIN(yellowCompact.findSeat(Person[index].getCredits(), 1));
+								yellowCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+								if (Person[index].getPIN() == "000") {
+									cout << "No front seat available please choose a different vehicle" << endl;
+									system("pause");
+									break;
+								}
+							}
 						}
-						Person[index].setPIN(blueCompact.findSeat(Person[index].getCredits(), 2));
-						blueCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(yellowCompact.findSeat(Person[index].getCredits(), 2));
-						yellowCompact.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
+					}
+
+					if (seatSelection == "window" && carSelect == "Sedan") {
 						Person[index].setPIN(blueSedan.findSeat(Person[index].getCredits(), 2));
 						blueSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(blackSedan.findSeat(Person[index].getCredits(), 2));
-						blackSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(greenSedan.findSeat(Person[index].getCredits(), 2));
-						greenSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
+						if (Person[index].getPIN() == "000") {
+							Person[index].setPIN(blackSedan.findSeat(Person[index].getCredits(), 2));
+							blackSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+							if (Person[index].getPIN() == "000") {
+								Person[index].setPIN(greenSedan.findSeat(Person[index].getCredits(), 2));
+								greenSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+								if (Person[index].getPIN() == "000") {
+									cout << "No front seat available please choose a different vehicle" << endl;
+									system("pause");
+									break;
+								}
+							}
 						}
 					}
-					if (seatSelection == "middle") {
+
+					//Middle seat
+					if (seatSelection == "middle" && carSelect == "Sedan") {
 						Person[index].setPIN(blueSedan.findSeat(Person[index].getCredits(), 3));
 						blueSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(blackSedan.findSeat(Person[index].getCredits(), 3));
-						blackSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
-						}
-						Person[index].setPIN(greenSedan.findSeat(Person[index].getCredits(), 3));
-						greenSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
-						if (Person[index].getPIN() != 000) {
-							break;
+						if (Person[index].getPIN() == "000") {
+							Person[index].setPIN(blackSedan.findSeat(Person[index].getCredits(), 3));
+							blackSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+							if (Person[index].getPIN() == "000") {
+								Person[index].setPIN(greenSedan.findSeat(Person[index].getCredits(), 3));
+								greenSedan.addPassenger(Person[index].getFirstname(), Person[index].getLastname());
+								if (Person[index].getPIN() == "000") {
+									cout << "No front seat available please choose a different vehicle" << endl;
+									system("pause");
+									break;
+								}
+							}
 						}
 					}
 
 				}
 				cout << "Reservation Created." << endl;
+				cout << "Reservation PIN number: " << Person[index].getPIN() << endl;
 				system("pause");
 				break;
 			}
+
 			else if (choice == 2) {
 				system("cls");
 				string name;
-				int pinNum;
+				string pinNum;
 				bool found = false;
 				bool foundReserve = false;
 				int index;
@@ -350,7 +373,7 @@ int main() {
 			else if (choice == 3) {
 				system("cls");
 				string name;
-				int pinNum;
+				string pinNum;
 				bool found = false;
 				bool foundReserve = false;
 				int index;
@@ -373,80 +396,80 @@ int main() {
 				cin >> pinNum;
 				if (pinNum == Person[index].getPIN()) {
 					foundReserve = true;
-					Person[index].setPIN(000);
-					if (pinNum == 101) {
+					Person[index].setPIN("000");
+					if (pinNum == "101") {
 						purplePickup.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 201) {
+					else if (pinNum == "201") {
 						greenPickup.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 301) {
+					else if (pinNum == "301") {
 						blackPickup.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 401) {
+					else if (pinNum == "401") {
 						redCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 501) {
+					else if (pinNum == "501") {
 						blueCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 601) {
+					else if (pinNum == "601") {
 						yellowCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 701) {
+					else if (pinNum == "701") {
 						blueSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 801) {
+					else if (pinNum == "801") {
 						blackSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 901) {
+					else if (pinNum == "901") {
 						greenSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
 
-					else if (pinNum == 402) {
+					else if (pinNum == "402") {
 						redCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 502) {
+					else if (pinNum == "502") {
 						blueCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 602) {
+					else if (pinNum == "602") {
 						yellowCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 702) {
+					else if (pinNum == "702") {
 						blueSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 802) {
+					else if (pinNum == "802") {
 						blackSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 902) {
+					else if (pinNum == "902") {
 						greenSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
 
-					else if (pinNum == 403) {
+					else if (pinNum == "403") {
 						redCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 503) {
+					else if (pinNum == "503") {
 						blueCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 603) {
+					else if (pinNum == "603") {
 						yellowCompact.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 703) {
+					else if (pinNum == "703") {
 						blueSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 803) {
+					else if (pinNum == "803") {
 						blackSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 903) {
+					else if (pinNum == "903") {
 						greenSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
 
-					else if (pinNum == 704) {
+					else if (pinNum == "704") {
 						blueSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 804) {
+					else if (pinNum == "804") {
 						blackSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
-					else if (pinNum == 904) {
+					else if (pinNum == "904") {
 						greenSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
 					}
 				}

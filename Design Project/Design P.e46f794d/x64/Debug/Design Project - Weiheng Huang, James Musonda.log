@@ -1,2 +1,6 @@
-﻿  main.cpp
+﻿  Pickup.cpp
+C:\Users\a9284\Documents\GitHub\CPET-321\Design Project\Pickup.cpp(101,27): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Generating Code...
+C:\Users\a9284\Documents\GitHub\CPET-321\Design Project\Pickup.cpp(69,1): warning C4715: 'Pickup::findSeat': not all control paths return a value
   Design Project - Weiheng Huang, James Musonda.vcxproj -> C:\Users\a9284\Documents\GitHub\CPET-321\Design Project\x64\Debug\Design Project - Weiheng Huang, James Musonda.exe

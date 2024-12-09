@@ -38,54 +38,33 @@ char Pickup::getSeatValue(int num) {
     }
 }
 
-string Pickup::getColor(string driver) {
-    if (driver == "Pat") {
-        color = "Purple";
-    }
-    else if (driver == "Jane") {
-        color = "Green";
-    }
-    else if (driver == "Tim") {
-        color = "Black";
-    }
-    else {
-        color = "Unknown";
-    }
+string Pickup::getColor() {
     return color;
 }
 
-int Pickup::findSeat(int credits, int num) {
-    if (num < 0 || num >= seats.size()) {
-        cout << "Invalid seat number." << endl;
-        return 0;
-    }
-
-    if (seats[num] == 'X') {
-        cout << "Seat already taken." << endl;
-        return 0;
-    }
-
-    if (credits >= 5) {
-        // Assign a PIN based on color
-        if (color == "Purple") {
-            pin = 101;
-        }
-        else if (color == "Green") {
-            pin = 201;
-        }
-        else if (color == "Black") {
-            pin = 301;
+string Pickup::findSeat(int credits, int num) {
+    string pin = "000";
+    if (num == 1) {
+        if (seats[num] != 'X') {
+            if (credits >= 5) {
+                if (color == "Purple") {
+                    pin = "101";
+                }
+                else if (color == "Green") {
+                    pin = "201";
+                }
+                else if (color == "Black") {
+                    pin = "301";
+                }
+                seats[num] = 'X';
+            }
+            else if (credits < 5) {
+                cout << "This person does not have enough credits for this seat" << endl;
+            }
         }
         else {
-            pin = 0; // Default for unknown color
+            return pin;
         }
-
-        seats[num] = 'X';
-        return pin;
-    }
-    else {
-        cout << "Not enough credits." << endl;
-        return 0;
     }
 }
 
@@ -93,21 +72,19 @@ void Pickup::addPassenger(string firstName, string lastName) {
     passengers.emplace_back(firstName + " " + lastName);
 }
 
-void Pickup::removePassenger(string firstName, string lastName, int pin) {
-    auto it = find(passengers.begin(), passengers.end(), firstName);
-    if (it != passengers.end()) {
-        passengers.erase(it);
-    }
-    else {
-        cout << "Passenger not found." << endl;
-        return;
-    }
-
-    // Reset the seat if the PIN is valid
-    if (pin == 101 || pin == 201 || pin == 301) {
-        if (seats.size() > 1) {
-            seats[1] = '5';
+void Pickup::removePassenger(string fname, string lname, string pin)
+{
+    string name = fname;
+    name.append(" ");
+    name.append(lname);
+    for (int i = 0; i < passengers.size(); i++) {
+        if (passengers[i] == name) {
+            passengers.erase(passengers.begin() + (i - 1));
+            break;
         }
+    }
+    if (pin == "101" || pin == "201" || pin == "301") {
+        seats[1] = '5';
     }
 }
 

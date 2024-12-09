@@ -21,12 +21,12 @@ class Sedan : Vehicle {
 
 	public:
 		Sedan();
-		int findSeat(int, int);
+		string findSeat(int, int);
 		int passengerListSize();
 		void assignVehicle(string);
 		void addPassenger(string, string);
-		void removePassenger(const string, const string, int);
+		void removePassenger(string, string, string);
 		char getSeatValue(int);
-		string getColor(string);
+		string getColor();
 		string getPassenger(int);
 };

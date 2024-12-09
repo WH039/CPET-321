@@ -1,12 +1,12 @@
-Pat Cooper -1
-Jane Cox -1
-Tim Taylor -1
-Ben Butler -1
-Art Campbell -1
-Ann Edwards -1
-Grace Wan -1
-Larry Adams -1
-Jess Quirk -1
+Pat Cooper 
+Jane Cox 
+Tim Taylor 
+Ben Butler 
+Art Campbell 
+Ann Edwards 
+Grace Wan 
+Larry Adams 
+Jess Quirk 
 Pam Allen 4
 Tony James 4
 Ron Jones 9

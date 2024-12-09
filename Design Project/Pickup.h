@@ -14,7 +14,6 @@ using namespace std;
 
 class Pickup : Vehicle {
 	private:
-		int pin;
 		string driver;
 		string color;
 		vector<char> seats;
@@ -22,12 +21,12 @@ class Pickup : Vehicle {
 
 	public:
 		Pickup();
-		int findSeat(int, int);
+		string findSeat(int, int);
 		int passengerListSize();
 		void assignVehicle(string);
 		void addPassenger(string, string);
 		char getSeatValue(int);
-		string getColor(string);
-		void removePassenger(string, string, int);
+		string getColor();
+		void removePassenger(string, string, string);
 		string getPassenger(int);
 };
