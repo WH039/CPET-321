@@ -58,7 +58,17 @@ void displaySedans(int seatNum, string color, string carType, Sedan carColor) {
 	} //for
 	cout << endl << endl;
 }
-
+bool alreadyAssigned(vector<string> assignedPeople, string name) {
+	for (int t = 0; t < assignedPeople.size(); t++) {
+		if (name == assignedPeople[t]) {
+			return true;
+			cout << name << " has a seat already.\n";
+		}
+		else {
+			return false;
+		}
+	}
+}
 int main() {
 
 	ifstream File("dodgeball_team.txt");
@@ -143,13 +153,9 @@ int main() {
 
 				cout << "Please enter the passenger's name: ";
 				cin >> name;
-
-				for (int t = 0; t < assignedPeople.size(); t++) {
-					if (name == assignedPeople[t]) {
-						found = true;
-						proceed = false;
-						cout << name << " has a seat already.\n";
-					}
+				if (alreadyAssigned(assignedPeople, name)) {
+					found = true;
+					proceed = false;
 				}
 				for (int i = 0; i < Person.size(); i++) {
 					if (name == Person[i].getFirstname() && proceed) {
@@ -352,6 +358,11 @@ int main() {
 					choice = 1;
 					cout << "Please create a new reservation." << endl;
 				}
+				for (int t = 0; t < assignedPeople.size(); t++) {
+					if (name == assignedPeople[t]) {
+						assignedPeople.erase(assignedPeople.begin() + t);
+					}
+				}
 				if (!foundReserve) { cout << "There is no reservation under that PIN number." << endl; }
 				system("pause");
 			} //if (2)
@@ -456,6 +467,11 @@ int main() {
 					}
 					else if (pinNum == "904") {
 						greenSedan.removePassenger(Person[index].getFirstname(), Person[index].getLastname(), pinNum);
+					}
+				}
+				for (int t = 0; t < assignedPeople.size(); t++) {
+					if (name == assignedPeople[t]) {
+						assignedPeople.erase(assignedPeople.begin() + t);
 					}
 				}
 				if (foundReserve == false) {
@@ -604,8 +620,9 @@ int main() {
 					}
 				}
 				outFile.close();
+				break;
 				system("pause");
-			} //if //if(6)
+			} //if(6)
 		} //while 2
 		system("cls");
 	} //while 1
