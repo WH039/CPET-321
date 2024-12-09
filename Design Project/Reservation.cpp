@@ -8,46 +8,22 @@
 
 #include "Reservation.h"
 
-using namespace RESERVATION;
+using namespace std;
 
-void Reservation::setFirstName(string fn) 
-{
-	firstName = fn;
-}
+Reservation::Reservation() {}
 
-void Reservation::setLastName(string ln) 
-{
-	lastName = ln;
-}
+void Reservation::setFirstName(string first) { firstName = first; }
 
-void Reservation::setCredits(int cred)
-{
-	credits = cred;
-	if (credits == -1) {
-		isDriver = true;
-	}
-}
+void Reservation::setLastName(string last){	lastName = last;}
 
-void Reservation::setPIN(int p)
-{
-	PIN = p;
-}
+void Reservation::setCredits(int coins) { credits = coins; }
 
-string Reservation::getFirstname()
-{
-	return firstName;
-}
+void Reservation::setPIN(int pinNum) { PIN = pinNum; }
 
-string Reservation::getLastname()
-{
-	return lastName;
-}
+string Reservation::getFirstname() { return firstName; }
 
-int Reservation::getCredits()
-{
-	return credits;
-}
+string Reservation::getLastname() {	return lastName;}
 
-int Reservation::getPIN() {
-	return PIN;
-}
+int Reservation::getCredits(){ return credits; }
+
+int Reservation::getPIN(){ return PIN; }

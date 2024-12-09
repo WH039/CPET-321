@@ -8,7 +8,7 @@
 
 #include "Sedan.h"
 
-using namespace SEDAN;
+using namespace std;
 
 Sedan::Sedan()
 {

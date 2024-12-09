@@ -15,16 +15,15 @@
 
 using namespace std;
 
-namespace RESERVATION {
-	class Reservation {
+class Reservation {
 	private:
 		string firstName;
 		string lastName;
-		int credits;
-		bool isDriver;
-		int PIN = 000;
+		int credits = 0;
+		int PIN = 0;
 
 	public:
+		Reservation();
 		void setFirstName(string);
 		void setLastName(string);
 		void setCredits(int);
@@ -33,6 +32,4 @@ namespace RESERVATION {
 		string getLastname();
 		int getCredits();
 		int getPIN();
-
 	};
-}

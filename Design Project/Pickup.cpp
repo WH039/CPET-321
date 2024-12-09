@@ -8,14 +8,13 @@
 
 #include "Pickup.h"
 
-using namespace PICKUP;
+using namespace std;
 
-Pickup::Pickup()
-{
-}
+Pickup::Pickup() {}
 
-void Pickup::assignVehicle(string driver)
-{
+// Assign vehicle color and initialize seats
+void Pickup::assignVehicle(string driver) {
+    seats = { '-', '5' };
     if (driver == "Pat") {
         color = "Purple";
     }
@@ -25,82 +24,102 @@ void Pickup::assignVehicle(string driver)
     else if (driver == "Tim") {
         color = "Black";
     }
-    seats = { '-', '5' };
+    else {
+        color = "Unknown";
+    }
 }
 
-char Pickup::getSeatValue(int num)
-{
-    char seatValue = seats[num];
-
-    return seatValue;
+char Pickup::getSeatValue(int num) {
+    if (num < seats.size()) {
+        return seats[num];
+    }
+    else {
+        return ' '; // Default for invalid indices
+    }
 }
 
-string Pickup::getColor(string fname)
-{
+string Pickup::getColor(string driver) {
+    if (driver == "Pat") {
+        color = "Purple";
+    }
+    else if (driver == "Jane") {
+        color = "Green";
+    }
+    else if (driver == "Tim") {
+        color = "Black";
+    }
+    else {
+        color = "Unknown";
+    }
     return color;
 }
 
-int Pickup::findSeat(int credits, int num)
-{
-    int pin = 000;
-    if (num == 1) {
-        if (seats[num] != 'X') {
-            if (credits == 5) {
-                if (color == "Purple") {
-                    pin = 101;
-                }
-                else if (color == "Green") {
-                    pin = 201;
-                }
-                else if (color == "Black") {
-                    pin = 301;
-                }
-                seats[num] = 'X';
-            }
-            else if (credits < 5) {
-                cout << "This person does not have enough credits for this seat" << endl;
-            }
-        }
+int Pickup::findSeat(int credits, int num) {
+    if (num < 0 || num >= seats.size()) {
+        cout << "Invalid seat number." << endl;
+        return 0;
     }
 
-    return pin;
-}
-
-void Pickup::addPassenger(string fname, string lname)
-{
-    string name = fname;
-    name.append(" ");
-    name.append(lname);
-    passengers.push_back(name);
-}
-
-void Pickup::removePassenger(const string fname, const string lname, int pin)
-{
-    string name = fname;
-    name.append(" ");
-    name.append(lname);
-    for (int i = 0; i < passengers.size(); i++) {
-        if (passengers[i] == name) {
-            passengers.erase(passengers.begin() + (i - 1));
-            break;
-        }
+    if (seats[num] == 'X') {
+        cout << "Seat already taken." << endl;
+        return 0;
     }
+
+    if (credits >= 5) {
+        // Assign a PIN based on color
+        if (color == "Purple") {
+            pin = 101;
+        }
+        else if (color == "Green") {
+            pin = 201;
+        }
+        else if (color == "Black") {
+            pin = 301;
+        }
+        else {
+            pin = 0; // Default for unknown color
+        }
+
+        seats[num] = 'X';
+        return pin;
+    }
+    else {
+        cout << "Not enough credits." << endl;
+        return 0;
+    }
+}
+
+void Pickup::addPassenger(string firstName, string lastName) {
+    passengers.emplace_back(firstName + " " + lastName);
+}
+
+void Pickup::removePassenger(string firstName, string lastName, int pin) {
+    auto it = find(passengers.begin(), passengers.end(), firstName);
+    if (it != passengers.end()) {
+        passengers.erase(it);
+    }
+    else {
+        cout << "Passenger not found." << endl;
+        return;
+    }
+
+    // Reset the seat if the PIN is valid
     if (pin == 101 || pin == 201 || pin == 301) {
-        seats[1] = '5';
+        if (seats.size() > 1) {
+            seats[1] = '5';
+        }
     }
-
 }
 
-string Pickup::getPassenger(int n)
-{
-    return passengers[n];
+// Get the name of a specific passenger
+string Pickup::getPassenger(int n) {
+    if (n < passengers.size()) {
+        return passengers[n];
+    }
+    return "Invalid index";
 }
 
-int Pickup::passengerListSize()
-{
-    int size;
-
-    size = passengers.size();
-    
-    return size;
+// Get the size of the passenger list
+int Pickup::passengerListSize() {
+    return passengers.size();
 }

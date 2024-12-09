@@ -10,10 +10,9 @@
 
 #include "Vehicle.h"
 
-using namespace VEHICLE;
+using namespace std;
 
-namespace SEDAN {
-	class Sedan : Vehicle {
+class Sedan : Vehicle {
 	private:
 		string driver;
 		string color;
@@ -22,15 +21,12 @@ namespace SEDAN {
 
 	public:
 		Sedan();
-
-		void assignVehicle(string);
-		char getSeatValue(int);
-		string getColor(string);
 		int findSeat(int, int);
+		int passengerListSize();
+		void assignVehicle(string);
 		void addPassenger(string, string);
 		void removePassenger(const string, const string, int);
+		char getSeatValue(int);
+		string getColor(string);
 		string getPassenger(int);
-		int passengerListSize();
-
-	};
-}
+};

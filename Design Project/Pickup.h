@@ -10,11 +10,11 @@
 
 #include "Vehicle.h"
 
-using namespace VEHICLE;
+using namespace std;
 
-namespace PICKUP {
-	class Pickup : Vehicle {
+class Pickup : Vehicle {
 	private:
+		int pin;
 		string driver;
 		string color;
 		vector<char> seats;
@@ -22,14 +22,12 @@ namespace PICKUP {
 
 	public:
 		Pickup();
-		
+		int findSeat(int, int);
+		int passengerListSize();
 		void assignVehicle(string);
+		void addPassenger(string, string);
 		char getSeatValue(int);
 		string getColor(string);
-		int findSeat(int, int);
-		void addPassenger(string, string);
-		void removePassenger(const string, const string, int);
+		void removePassenger(string, string, int);
 		string getPassenger(int);
-		int passengerListSize();
-	};
-}
+};

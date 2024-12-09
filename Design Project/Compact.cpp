@@ -8,7 +8,7 @@
 
 #include "Compact.h"
 
-using namespace COMPACT;
+using namespace std;
 
 Compact::Compact()
 {
@@ -123,10 +123,10 @@ void Compact::removePassenger(const string fname, const string lname, int pin)
     if (pin == 401 || pin == 501 || pin == 601) {
         seats[1] = '5';
     }
-    else if (pin == 402 || pin == 602 || pin == 602) {
+    else if (pin == 402 || pin == 502 || pin == 602) {
         seats[2] = '3';
     }
-    else if (pin == 403 || pin == 603 || pin == 603) {
+    else if (pin == 403 || pin == 503 || pin == 603) {
         seats[3] = '3';
     }
 }

@@ -10,26 +10,42 @@
 
 #include "Vehicle.h"
 
-using namespace VEHICLE;
+using namespace std;
 
-namespace COMPACT {
-	class Compact : Vehicle {
+class Compact : Vehicle {
+private:
+	string driver;
+	string color;
+	vector<char> seats;
+	vector<string> passengers;
+
+public:
+	Compact();
+	int findSeat(int, int);
+	int passengerListSize();
+	void assignVehicle(string);
+	void addPassenger(string, string);
+	void removePassenger(const string, const string, int);
+	char getSeatValue(int);
+	string getColor(string);
+	string getPassenger(int);
+};
+
+
+/*
+class Compact : Vehicle {
 	private:
-		string driver;
-		string color;
-		vector<char> seats;
-		vector<string> passengers;
+		int compactSeatCount;
+		string compactColor;
+		int compactFront;
+		int compactWindowL;
+		int compactWindowR;
+		int scompactMiddle;
 
 	public:
 		Compact();
-
-		void assignVehicle(string);
-		char getSeatValue(int);
-		string getColor(string);
-		int findSeat(int, int);
-		void addPassenger(string, string);
-		void removePassenger(const string, const string, int);
-		string getPassenger(int);
-		int passengerListSize();
+		int getCompactSeatValue(string);
+		int getCompactNumSeats();
+		string getCompactColor(string);
 	};
-}
+	*/

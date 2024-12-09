@@ -15,8 +15,7 @@
 
 using namespace std;
 
-namespace VEHICLE {
-	class Vehicle {
+class Vehicle {
 	protected:
 		string vehicleType;
 		string vehicleColor;
@@ -24,4 +23,3 @@ namespace VEHICLE {
 	public:
 		void displayVehicle();
 	};
-}
